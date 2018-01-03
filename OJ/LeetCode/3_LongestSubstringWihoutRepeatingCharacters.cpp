@@ -1,7 +1,7 @@
 #include "../need.h"
 using namespace std;
 
-int solution(string s) {
+int lengthOfLongestSubstring(string s) {
     using str_size = string::size_type;
 
     map<char, str_size> hash;  // 当前字母到其在该字符串中最后一次出现位置的映射
