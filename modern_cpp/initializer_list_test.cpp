@@ -2,7 +2,7 @@
 
 class InitListTest {
 public:
-    InitListTest(int a) {
+    explicit InitListTest(int a) {
         std::cout << "InitListTest(int) " << a << std::endl;
     }
 
@@ -19,16 +19,28 @@ public:
     // }
 };
 
+void F(const InitListTest &ilt) {
+    std::cout << '\n';
+}
+
 void Separator() {
     std::cout << "-----------------------------------------------" << std::endl;
 }
 
 int main() {
 
-    Separator();
-    InitListTest ilt0{1};
-    Separator();
-    InitListTest ilt1[]{1, 2};
+    F(static_cast<InitListTest>(1, 2));
+    F(static_cast<InitListTest>(1));
+
+    auto ilt{InitListTest{1}};
+    auto ilt1 = InitListTest{1, 2};
+    // InitListTest ilt0{1, 2};
+    InitListTest ilt2{ 1, 2, 3 };
+
+    // Separator();
+    // InitListTest ilt0{1, 2};
+    // Separator();
+    // InitListTest ilt1[]{1, 2};
     // Separator();
     // InitListTest ilt2{1, 2, 3};
     // Separator();
