@@ -20,7 +20,12 @@ void TestP313() {
 
 int main() {
 
-    TestP313();
+    std::vector<int> vec{ 1, 2, 3, 4 };
+
+    auto iter = vec.begin();
+    std::cout << *(iter = vec.insert(iter, 0)) << '\n';
+
+    PrintSeqContainer(vec);
 
     return 0;
 }

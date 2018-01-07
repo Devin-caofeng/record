@@ -16,3 +16,10 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <algorithm>
+
+
+template <typename T>
+inline void PrintSeqContainer(const T &container) {
+    for (const auto &i : container) std::cout << i << ' ';
+    std::cout << '\n';
+}
