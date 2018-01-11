@@ -16,10 +16,18 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <algorithm>
+#include <numeric>
+#include <iterator>
 
 
 template <typename T>
 inline void PrintSeqContainer(const T &container) {
     for (const auto &i : container) std::cout << i << ' ';
-    std::cout << '\n';
+    std::cout << std::endl;
+}
+
+template <typename T>
+inline void PrintByIter(T curr, T end) {
+    for (; curr!= end; ++curr) std::cout << *curr << ' ';
+    std::cout << std::endl;
 }
