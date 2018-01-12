@@ -62,4 +62,15 @@ back_inserter 是插入迭代器，在头文件 iterator 中声明，不属于�
 
 ## [ex10_13](ex10_13.cpp)
 
+## ex10_14
+```c++
+auto Add = [](int n1, int n2) { return n1 + n2; };
+```
 
+## ex10_15
+```c++
+int value = 1;
+auto Add = [value](int n) { return value + n; };
+```
+
+## [ex10_16](ex10_16.cpp)
