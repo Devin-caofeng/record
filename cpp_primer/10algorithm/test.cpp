@@ -52,5 +52,10 @@ int main() {
 
     // lambda();
 
+    std::vector<int> vec{ 1, 2, 3 };
+    std::ostream_iterator<int> out_iter(std::cout, " ");
+    std::copy(vec.cbegin(), vec.cend(), out_iter);
+    std::cout << '\n';
+
     return 0;
 }

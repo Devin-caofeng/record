@@ -74,3 +74,73 @@ auto Add = [value](int n) { return value + n; };
 ```
 
 ## [ex10_16](ex10_16.cpp)
+
+## [ex 10_18 and 10_19](ex10_18_19.cpp)
+
+## ex10_20
+```c++
+size_t LengthBigetThan6(std::vector<str::string> &words, size_t len) {
+    return std::count_if(words.cbegin(), words.cend(),
+        [len](const std::string str]) {
+            return str.size() > len;
+    });
+}
+```
+
+## ex10_21
+```c++
+int num = 6;
+auto CheckAndDecrement = [&num] { return num > 0 ? !--num : !num; };
+while (!CheckAndDecrement()) std::cout << num << ' ';
+std::cout << '\n';
+```
+
+## ex_10_22
+```c++
+bool IsShorter(const std::string &str, const std::string::size_type len) {
+    return str.size() <= 6;
+}
+
+int main() {
+
+    ...
+    auto conut = std::count_if(words.cbegin(), words.cend(),
+                               std::bind(IsShorter, _1, 6));
+
+    return 0;
+}
+```
+
+## ex10_23
+如果被绑定的函数接受n个参数，那么 bind 函数接受n+1个参数，多出来的一个为要绑定函数的函数名
+
+## [ex10_24](ex10_24.cpp)
+
+## [ex10_25](ex10_25.cpp)
+
+## ex10_26
+- back_inserter 使用 push_back
+- front_inserter 使用 push_front
+- inserter 使用 insert，此函数接受第二个参数，这个参数必须是一个指向给定容器的迭代器。
+元素将被插入到给定迭代器所表示的元素之前。
+
+## ex10_27
+```c++
+std::vector<int> vec{ 1, 2, 2, 3, 3, 4 };
+std::list<int> lst;
+std::unique_copy(vec.cbegin(), vec.cend(), back_inserter(lst));
+
+for (const auto &i : lst) std::cout << i << ' ';
+std::cout << '\n';
+```
+
+## ex10_28
+```c++
+std::vector<int> vec{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+std::vector<int> v1, v2, v3;
+std::copy(vec.cbegin(), vec.cend(), front_inserter(v1));
+std::copy(vec.cbegin(), vec.cend(), back_inserter(v2));
+std::copy(vec.cbegin(), vec.cend(), inserter(v3, v3.begin()));
+```
+
+## [ex10_29](ex10_29.cpp)
