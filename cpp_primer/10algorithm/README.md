@@ -144,3 +144,66 @@ std::copy(vec.cbegin(), vec.cend(), inserter(v3, v3.begin()));
 ```
 
 ## [ex10_29](ex10_29.cpp)
+
+## [ex10_30](ex10_30.cpp)
+
+## [ex10_31](ex10_31.cpp)
+
+## [ex10_33](ex10_33.cpp)
+
+## [ex10_34](ex10_34.cpp)
+
+## ex10_34
+```c++
+for (auto criter = vec.crbegin(); criter != vec.crend(); ++criter) {
+    std::cout << *criter << ' ';
+}
+std::cout << '\n';
+```
+
+## ex10_35
+```c++
+for (auto iter = std::prev(vec.cend()); true; --iter) {
+    if (iter == vec.cbegin()) {
+        std::cout << *iter << '\n';
+        break;
+    }
+    std::cout << *iter << ' ';
+}
+```
+
+## ex10_36
+```c++
+auto iter = std::find(lst.crbegin(), lst.crend(), 0);
+std::cout << std::distance(it, lst.crend) << '\n';
+```
+
+## ex10_37
+```c++
+std::list<int> ret_lst(8 - 3);
+std::copy(vec.cbegin() + 3, vec.cbegin() + 8, ret_lst.rbegin());
+```
+
+## ex10_38
+- 输入迭代器：==, !=, ++, *, ->
+- 输出迭代器；++, *
+- 前向迭代器；==, !=, ++, *, ->
+- 双向迭代器；==, != , ++, --, *, ->
+- 随机访问迭代器；==, !=, <, <=, >, >=, ++, --, +, +=, -, -=, *, ->, iter[n] == *(iter[n])
+
+## ex10_39
+- list 上的迭代器是双向迭代器
+- vector 上的迭代器是随机访问迭代器
+
+## ex10_40
+- copy 需要两个输入迭代器，一个输出迭代器
+- reverse 需要双向迭代器
+- unique 需要随机访问迭代器
+
+## ex10_41
+- replace 在两个迭代器范围内用新值替换所有的旧值
+- replace_if 在两个带带器范围内，用新值替换使得谓词成立的元素
+- replace_copy 复制两个迭代器范围内的元素到目标迭代器位置，如果元素等于某个旧值，则用新值替换
+- replace_copy_if 复制两个迭代器范围内的元素到目标迭代器位置，用新值替换使得谓词成立的元素
+
+## [ex10_42](ex10_42.cpp)

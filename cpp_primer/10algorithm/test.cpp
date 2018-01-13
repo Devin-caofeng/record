@@ -52,10 +52,14 @@ int main() {
 
     // lambda();
 
-    std::vector<int> vec{ 1, 2, 3 };
-    std::ostream_iterator<int> out_iter(std::cout, " ");
-    std::copy(vec.cbegin(), vec.cend(), out_iter);
-    std::cout << '\n';
+//    std::vector<int> vec{ 1, 2, 3 };
+    std::vector<int> vec;
+    for (auto iter = std::prev(vec.cend()); true; --iter) {
+        std::cout << *iter << ' ';
+        if (iter == vec.cbegin()) {
+            break;
+        }
+    }
 
     return 0;
 }
