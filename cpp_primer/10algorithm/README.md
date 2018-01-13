@@ -95,7 +95,7 @@ while (!CheckAndDecrement()) std::cout << num << ' ';
 std::cout << '\n';
 ```
 
-## ex_10_22
+## ex10_22
 ```c++
 bool IsShorter(const std::string &str, const std::string::size_type len) {
     return str.size() <= 6;
@@ -186,10 +186,10 @@ std::copy(vec.cbegin() + 3, vec.cbegin() + 8, ret_lst.rbegin());
 
 ## ex10_38
 - 输入迭代器：==, !=, ++, *, ->
-- 输出迭代器；++, *
-- 前向迭代器；==, !=, ++, *, ->
-- 双向迭代器；==, != , ++, --, *, ->
-- 随机访问迭代器；==, !=, <, <=, >, >=, ++, --, +, +=, -, -=, *, ->, iter[n] == *(iter[n])
+- 输出迭代器：++, *
+- 前向迭代器：==, !=, ++, *, ->
+- 双向迭代器：==, != , ++, --, *, ->
+- 随机访问迭代器：==, !=, <, <=, >, >=, ++, --, +, +=, -, -=, *, ->, iter[n] == *(iter[n])
 
 ## ex10_39
 - list 上的迭代器是双向迭代器
