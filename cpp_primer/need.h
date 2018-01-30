@@ -15,10 +15,12 @@
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
+#include <utility>
 #include <algorithm>
 #include <functional>
 #include <numeric>
 #include <iterator>
+#include <stdexcept>
 
 
 template <typename T>
