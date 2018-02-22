@@ -58,11 +58,21 @@ const std::string &StrBlob::back() const {
 
 int main() {
 
-    const StrBlob cstr({ "hello" });
-    StrBlob str({ "hello", "lambda", "fork" });
+    // const StrBlob cstr({ "hello" });
+    // StrBlob str({ "hello", "lambda", "fork" });
 
-    std::cout << (str.front() = "lambda") << '\n';
-    std::cout << cstr.front() << '\n';
+    // std::cout << (str.front() = "lambda") << '\n';
+    // std::cout << cstr.front() << '\n';
+
+    char c[0];
+    // c[0] = 'c';
+    std::cout << "c size : " << sizeof(c) << '\n';
+    std::cout << '[' << c[0] << ']' << '\n';
+
+    char *cp = new char[0];
+    cp[0] = 'c';
+    *cp = 'p';
+    std::cout << '[' << cp[0] << ']' << '\n';
 
     return 0;
 }
