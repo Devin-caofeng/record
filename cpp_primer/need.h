@@ -21,6 +21,7 @@
 #include <numeric>
 #include <iterator>
 #include <stdexcept>
+#include <memory>
 
 
 template <typename T>
