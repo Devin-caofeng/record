@@ -123,3 +123,11 @@ the object to which ps points, rather than copying ps itself.
 ## exercise 13.32
 不会，类值的版本利用 swap 交换指针不用进行内存分配，因此得到了性能上的提升。类指针
 的版本原本就没有进行内存重新分配，所以性能不会得到提升
+
+## exercise 13.33
+因为 save 和 remove 操作需要更新指定 Folder
+
+## exercise 13.34[hpp](ex13_34.hpp)[cpp](ex13_34.cpp)
+
+## exercise 13.35
+在赋值后，一些已经存在的 Folders 将会与 Message 不同步
