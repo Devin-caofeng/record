@@ -5,26 +5,50 @@
 using std::vector;
 using std::string;
 
+template<typename T>
+void MergeSort(T arr[], int len) {
+    T *a = arr;
+    T *b = new T[len];
+    for (int seg = 1; seg < len; seg += seg) {
+        for (int start = 0; start < len; start += (seg + seg)) {
+            int low = start;
+            int mid = std::min(start + seg, len);
+            int high = std::min(start + seg + seg, len);
+            int k = low;
+            int start1 = low, end1 = mid;
+            int start2 = mid, end2 = high;
+
+            while (start1 < end1 && start2 < end2) {
+                b[k++] = (a[start1] < a[start2]) ? a[start1++] : a[start2++];
+            }
+        }
+    }
+}
+
+void Print(const vector<int> &vec) {
+    for (const auto &i : vec) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+}
+
 int Merge(vector<int> &vec, int left, int mid, int right) {
     int n1 = mid - left;
     int n2 = right - mid;
 
-    vector<int> l(n1 + 1);
+    vector<int> l(n1);
     for (int i = 0; i < n1; ++i) l[i] = vec[left + i];
-    l[n1] = 0x7fffffff;
 
-    vector<int> r(n2 + 1);
+    vector<int> r(n2);
     for (int i = 0; i < n2; ++i) r[i] = vec[mid + i];
-    r[n2] = 0x7fffffff;
 
-    for (int i = 0, j = 0, k = left; k < right; ++k) {
-        if (l[i] <= r[j]) {
-            vec[k] = l[i++];
-        }
-        else {
-            vec[k] = r[j++];
-        }
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (l[i] <= r[j]) vec[k++] = l[i++];
+        else              vec[k++] = r[j++];
     }
+    while (i < n1) vec[k++] = l[i++];
+    while (j < n2) vec[k++] = r[j++];
 
     return right - left;
 }
@@ -41,26 +65,13 @@ int MergeSort(vector<int> &vec, int left, int right) {
     return res;
 }
 
-void Print(const vector<int> &vec) {
-    for (const auto &i : vec) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
-}
-
 int main() {
 
-    for (int i = 0; i < 10; ++i) {
-        vector<int> vec;
-        for (int j = 0; j < 9; ++j) {
-            vec.push_back(rand() % 10000);
-        }
+    vector<int> vec{ -1, 23, 0, 432 };
 
-        MergeSort(vec, 0, vec.size() - 1);
-        Print(vec);
+    MergeSort(vec, 0, vec.size());
 
-        vec.clear();
-    }
+    Print(vec);
 
     return 0;
 }
