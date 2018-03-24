@@ -1,7 +1,7 @@
 #include "./need.h"
 
 void Print() {
-
+    ;
 }
 
 template <typename T, typename... Type>

@@ -19,7 +19,7 @@ public:
     // }
 };
 
-void F(const InitListTest &ilt) {
+void F(const InitListTest &) {
     std::cout << '\n';
 }
 
