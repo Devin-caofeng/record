@@ -26,9 +26,9 @@ private:
         char t = board[x][y];
         board[x][y] = '\0';
         if (isFound(board, c + 1, x - 1, y) ||
-            isFound(board, c + 1, x - 1, y) ||
-            isFound(board, c + 1, x - 1, y) ||
-            isFound(board, c + 1, x - 1, y)) return true;
+            isFound(board, c + 1, x + 1, y) ||
+            isFound(board, c + 1, x, y - 1) ||
+            isFound(board, c + 1, x, y + 1)) return true;
         board[x][y] = t;
         return false;
     }
