@@ -32,6 +32,22 @@ void Print(const vector<int> &vec) {
     std::cout << std::endl;
 }
 
+namespace CF {
+
+void Merge(int *A, int *L, int left_cnt, int *R, int right_cnt) {
+    int i, j, k;
+    i = 0, j = 0, k = 0;
+
+    while (i < left_cnt && j < right_cnt) {
+        if (L[i] < R[j]) A[k++] = L[i++];
+        else A[k++] = R[j++];
+    }
+    while (i < left_cnt) A[k++] = L[i++];
+    while (j < right_cnt) A[k++] = R[j++];
+}
+
+}
+
 int Merge(vector<int> &vec, int left, int mid, int right) {
     int n1 = mid - left;
     int n2 = right - mid;
@@ -45,7 +61,7 @@ int Merge(vector<int> &vec, int left, int mid, int right) {
     int i = 0, j = 0, k = left;
     while (i < n1 && j < n2) {
         if (l[i] <= r[j]) vec[k++] = l[i++];
-        else              vec[k++] = r[j++];
+        else vec[k++] = r[j++];
     }
     while (i < n1) vec[k++] = l[i++];
     while (j < n2) vec[k++] = r[j++];
@@ -55,7 +71,7 @@ int Merge(vector<int> &vec, int left, int mid, int right) {
 
 int MergeSort(vector<int> &vec, int left, int right) {
     int res = 0;
-    if (left + 1 < right) {
+    if (left < right - 1) {
         int mid = (left + right) / 2;
         res += MergeSort(vec, left, mid);
         res += MergeSort(vec, mid, right);

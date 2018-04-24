@@ -2,57 +2,49 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-using std::vector;
-using std::string;
+using namespace std;
 
-class Counter {
+template <typename T>
+class SharedPtr{
 public:
-    Counter(int u) : cnt_(u) { }
-    ~Counter() { }
-    int cnt_;
-};
+    SharedPtr(T *ptr) : ptr_(ptr), cnt_(new int(1)) { }
 
-template<typename T>
-class SharedPtr {
-public:
-    SharedPtr() : tptr_(nullptr), cntptr_(nullptr) { }
-
-    SharedPtr(T *t) {
-        if (t == nullptr) {
-            cntptr_ = nullptr;
-            tptr_   = nullptr;
-            return;
-        }
-        cntptr_ = new Counter(1);
-        tptr_   = t;
+    SharedPtr(const SharedPtr &ptr) : ptr_(ptr.ptr_), cnt_(ptr.cnt_) {
+        ++(*cnt_);
     }
+
+    SharedPtr& operator=(const SharedPtr &ptr) {
+        if (this == &ptr) return *this;
+
+        if (!--(*cnt_)) {
+            delete ptr_;
+            delete cnt_;
+            cout << "delete older" << endl;
+        }
+        ptr_ = ptr.ptr_;
+        cnt_ = ptr.cnt_;
+        ++(*cnt_);
+        return *this;
+    }
+
+    ~SharedPtr() {
+        --(*cnt_);
+        if ((*cnt_) == 0) {
+            delete ptr_;
+            delete cnt_;
+            cout << "delete" << endl;
+        }
+    }
+
+    T& operator*() { return *ptr_; }
+
+    T* operator->() { return ptr_; }
 
 private:
-    bool IsEmpty() const {
-        return tptr_ == nullptr;
-    }
-
-    void Clear() {
-        if (tptr_ == nullptr) {
-            return;
-        }
-
-        --cntptr_->cnt_;
-        if (cntptr_->cnt_ == 0) {
-            delete tptr_;
-            delete cntptr_;
-        }
-        tptr_   = nullptr;
-        cntptr_ = nullptr;
-    }
-
-    T *tptr_;
-    Counter *cntptr_;
+    T   *ptr_;
+    int *cnt_;
 };
 
 int main() {
-
-
-
     return 0;
 }
