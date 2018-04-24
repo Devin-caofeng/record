@@ -18,7 +18,7 @@ public:
         }
 
         for (int i = 0; i < word_len; ++i) {
-            size_t total_in = 0;
+            int total_in = 0;
             unordered_map<string, int> cur_cnt;
 
             for (size_t j = i, start = i; j + word_len <= s.size();
