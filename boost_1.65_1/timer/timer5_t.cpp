@@ -4,7 +4,8 @@
 #include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 
-class Printer {
+class Printer
+{
 public:
     Printer(boost::asio::io_service& io)
         : cnt_(0),
@@ -21,7 +22,7 @@ public:
         std::cout << "Final cnt is " << cnt_ << std::endl;
     }
 
-    void Print(std::string tid)
+    void Print(const std::string& tid)
     {
         if (cnt_ < 6)
         {
@@ -30,7 +31,7 @@ public:
 
             timer1_.expires_at(
                 timer1_.expires_at() + boost::posix_time::seconds(1));
-            timer1_.async_wait(boost::bind(&Printer::Print, this));
+            timer1_.async_wait(boost::bind(&Printer::Print, this, tid));
         }
     }
 
