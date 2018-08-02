@@ -22,7 +22,13 @@ int main(int argc, char* argv[])
         tcp::socket socket(io);
         boost::asio::connect(socket, endpoint_iter);
 
-        for (;;)
+        // boost::asio::deadline_timer t(io, boost::posix_time::seconds(5));
+        // t.async_wait([&socket](const boost::system::error_code&)
+        // {
+        //     socket.close();
+        // });
+
+        for (int i = 0; i < 6; ++i)
         {
             boost::array<char, 128> buf;
             boost::system::error_code error;
@@ -40,6 +46,8 @@ int main(int argc, char* argv[])
 
             std::cout.write(buf.data(), len);
         }
+
+        socket.shutdown(tcp::socket::shutdown_receive);
     }
     catch (std::exception& e)
     {
