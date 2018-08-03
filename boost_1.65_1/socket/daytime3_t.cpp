@@ -8,8 +8,6 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 
-using boost::asio::ip::tcp;
-
 std::string MakeDaytimeString()
 {
     std::time_t now = std::time(0);
@@ -18,6 +16,7 @@ std::string MakeDaytimeString()
 
 class TcpConnection : public boost::enable_shared_from_this<TcpConnection>
 {
+    using tcp = boost::asio::ip::tcp;
 public:
     using Pointer = boost::shared_ptr<TcpConnection>;
 
@@ -33,8 +32,8 @@ public:
 
     void Start(int voice, int angle)
     {
-        message_ = "vioce:" + std::to_string(voice) +
-            "angle:" + std::to_string(angle);
+        message_ = "vioce:" + std::to_string(voice) + ", " +
+            "angle:" + std::to_string(angle) + "\n";
         // boost::asio::async_write(socket_, boost::asio::buffer(message_),
         //     boost::bind(&TcpConnection::HandleWrite,
         //         shared_from_this(),
@@ -71,6 +70,7 @@ private:
 
 class TcpServer
 {
+    using tcp = boost::asio::ip::tcp;
 public:
     TcpServer(const TcpServer&) = delete;
     TcpServer& operator=(const TcpServer&) = delete;
@@ -81,7 +81,7 @@ public:
         return tcp_server;
     }
 
-    void Notify()
+    void Notify(int voice, int angle)
     {
         int cnt = 0;
         for (auto iter = connections_.cbegin();
@@ -89,7 +89,7 @@ public:
         {
             if ((*iter)->Socket().is_open())
             {
-                (*iter)->Start();
+                (*iter)->Start(voice, angle);
                 ++iter;
             }
             else
@@ -112,7 +112,7 @@ private:
         for (;;)
         {
             TcpConnection::Pointer new_connection =
-                TcpConnection::Create(acceptor_.get_io_service());
+              TcpConnection::Create(acceptor_.get_io_service());
 
             boost::system::error_code ec;
             acceptor_.accept(new_connection->Socket(), ec);
@@ -139,7 +139,7 @@ int main()
         static TcpServer &server = TcpServer::GetInstance(io);
         for (;;)
         {
-            server.Notify();
+            server.Notify(0, 1);
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
     }
