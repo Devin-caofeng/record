@@ -1,4 +1,4 @@
-BIN=ser cli_daytime #ser_daytime
+BIN=cli_daytime ser_daytime
 
 CPP_LIB=-lboost_system -lpthread
 

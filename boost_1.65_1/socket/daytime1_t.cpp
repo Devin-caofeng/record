@@ -28,9 +28,9 @@ int main(int argc, char* argv[])
         //     socket.close();
         // });
 
-        for (int i = 0; i < 6; ++i)
+        for (;;)
         {
-            boost::array<char, 128> buf;
+            boost::array<char, 1024> buf;
             boost::system::error_code error;
 
             size_t len = socket.read_some(boost::asio::buffer(buf), error);
@@ -46,8 +46,6 @@ int main(int argc, char* argv[])
 
             std::cout.write(buf.data(), len);
         }
-
-        socket.shutdown(tcp::socket::shutdown_receive);
     }
     catch (std::exception& e)
     {
